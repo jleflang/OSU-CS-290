@@ -1,16 +1,48 @@
-p {
-    margin: 0 0 9px;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 13px;
+form fieldset {
+    border: 2px solid grey;
     line-height: 18px;
     }
-    p small {
-    font-size: 11px;
-    color: #999999;
+
+    label.special {
+        border: 2px solid grey;
+        line-height: 20px;
+        padding: 7px 0;
+        margin: 12px 0;
     }
-    .lead {
-    margin-bottom: 18px;
-    font-size: 20px;
-    font-weight: 200;
-    line-height: 27px;
+    
+    fieldset p {
+        border: 2px solid grey;
+        line-height: 20px;
+        padding: 8px 0;
+        margin: 8px 0;
+    }
+
+table {
+    table-layout: auto;
+    width: auto;
+    border-collapse: collapse;
+    border-style: outset;
+    }
+
+    tbody tr th {
+        font-weight: normal;
+        font-style: italic;
+    }
+
+    th, td {
+        border-style: inset;
+        padding: 5px;
+    }
+
+.outer-content {
+    padding: 20px;
+    width: 75%;
+    background-color: pink;
+    }
+
+.inner-content {
+    margin: auto;
+    width: 75%;
+    background-color: skyblue;
+    text-align: center;
     }
