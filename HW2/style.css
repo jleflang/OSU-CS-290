@@ -1,27 +1,30 @@
+html {
+    font-size: 13pt;
+    font-family: Helvetica, Arial, sans-serif;
+}
+
 form fieldset {
     border: 2px solid grey;
     line-height: 18px;
     }
 
     label.special {
+        display: flex;
+        align-items: center;
         border: 2px solid grey;
-        line-height: 20px;
-        padding: 7px 0;
-        margin: 12px 0;
+        padding: 3px;
     }
     
     fieldset p {
         border: 2px solid grey;
-        line-height: 20px;
-        padding: 8px 0;
-        margin: 8px 0;
+        padding: 3px;
     }
 
 table {
     table-layout: auto;
     width: auto;
     border-collapse: collapse;
-    border-style: outset;
+    border: 3px ridge gray;
     }
 
     tbody tr th {
@@ -30,7 +33,7 @@ table {
     }
 
     th, td {
-        border-style: inset;
+        border: 3px ridge gray;
         padding: 5px;
     }
 
