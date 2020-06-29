@@ -6,8 +6,8 @@ console.log(deepEqual(obj,obj));
 console.log(deepEqual(obj,null));
 console.log(deepEqual(obj,777));
 console.log(deepEqual(777,777));
-console.log(obj,{here: 1, object: 2});
-console.log(77,777);
+console.log(deepEqual(obj,{here: 1, object: 2}));
+console.log(deepEqual(77,777));
 
 // The deepEqual func
 function deepEqual(x, y) {
