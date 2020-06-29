@@ -37,8 +37,11 @@ function deepEqual(x, y) {
                     } else return false;
 
                 } else if (x[key] !== y[key]) {return false;} // A mismatch is found
-                // No mismatch
             }
+
+            // No mismatch
+            return true;
+
         } else return false;
     } else if (x !== y) {return false;} // A mismatch is found
     // No mismatch
