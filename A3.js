@@ -27,18 +27,22 @@ function deepEqual(x, y) {
                 // But there is a mismatch in values
                 if (x[key] !== y[key]) return false;
 
-                
+                // If the values are objects
+                if (typeof x[key] === "object" && x[key] != null) {
+                    if (typeof y[key] === "object" && y[key] != null) {
+                        // Recursively go through
+                       return deepEqual(x[key],y[key]);
+                    }
+                    else return false;
+                }
+                else return true;
             }
 
         }
         else return false;
-    }
-    else return false;
-
     // We are not handling objects or nulls
-    if (x === y) return true;
-
-    // None of this is true so default to false
-    return false;
+    } else if (x === y) {return true;}
+    // No match
+    else return false;
 
 };
