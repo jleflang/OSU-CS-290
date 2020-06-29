@@ -6,6 +6,8 @@ console.log(deepEqual(obj,obj));
 console.log(deepEqual(obj,null));
 console.log(deepEqual(obj,777));
 console.log(deepEqual(777,777));
+console.log(obj,{here: 1, object: 2});
+console.log(77,777);
 
 // The deepEqual func
 function deepEqual(x, y) {
@@ -35,11 +37,9 @@ function deepEqual(x, y) {
                     }
                     else return false;
                 }
-                else return true;
+                else return false;
             }
-
-        }
-        else return false;
+        } else return false;
     // We are not handling objects or nulls
     } else if (x === y) {return true;}
     // No match
