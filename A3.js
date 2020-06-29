@@ -11,8 +11,8 @@ console.log(deepEqual(77,777));
 
 // The deepEqual func
 function deepEqual(x, y) {
-    // If both params are null, return true
-    if (x === null && y === null) return true;
+    // If both params are identical, return true
+    if (x === y) return true;
 
     // If both params are objects
     if (typeof x == "object" && x != null) {
@@ -25,17 +25,9 @@ function deepEqual(x, y) {
                 // Check to see if the key is in y
                 if (!(key in Object.keys(y))) return false;
 
-                // The key was found
-                // If the values are objects
-                if (typeof x[key] == "object" && x[key] != null) {
-                    if (typeof y[key] == "object" && y[key] != null) {
-
-                        // Recursively go through
-                       return deepEqual(x[key],y[key]);
-
-                    } else return false;
-
-                } else if (x[key] !== y[key]) {return false;} // A mismatch is found
+                // The key was found in both
+                // Recursively go through
+                return deepEqual(x[key],y[key]);
             }
 
             // No mismatch
