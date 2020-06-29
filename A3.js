@@ -26,14 +26,13 @@ function deepEqual(x, y) {
                 if (!(key in Object.keys(y))) return false;
 
                 // The key was found
-                // But there is a mismatch in values
-                if (x[key] !== y[key]) return false;
-
                 // If the values are objects
                 if (typeof x[key] == "object" && x[key] != null) {
                     if (typeof y[key] == "object" && y[key] != null) {
+
                         // Recursively go through
                        return deepEqual(x[key],y[key]);
+
                     } else return false;
 
                 } else if (x[key] !== y[key]) {return false;} // A mismatch is found
