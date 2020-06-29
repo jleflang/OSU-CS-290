@@ -14,12 +14,12 @@ function deepEqual(x, y) {
     // If both params are identical, return true
     if (x === y) return true;
 
-    // Mismatched length
-    if (Object.keys(x).length !== Object.keys(y).length) return false;
-
     // If both params are objects
     if (typeof x == "object" && x != null) {
         if (typeof y == "object" && y != null) {
+
+            // Mismatched length
+            if (Object.keys(x).length !== Object.keys(y).length) return false;
 
             // Check keys
             for (var key in Object.keys(x)) {
