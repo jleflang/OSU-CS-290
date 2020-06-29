@@ -36,13 +36,12 @@ function deepEqual(x, y) {
                        return deepEqual(x[key],y[key]);
                     } else return false;
 
-                } else if (x[key] === y[key]) {return true;} // The values at key match
-                // No match
-                else return false;
+                } else if (x[key] !== y[key]) {return false;} // A mismatch is found
+                // No mismatch
             }
         } else return false;
-    } else if (x === y) {return true;} // We are not handling objects or nulls
-    // No match
-    else return false;
+    } else if (x !== y) {return false;} // A mismatch is found
+    // No mismatch
+    else return true;
 
 };
