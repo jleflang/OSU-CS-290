@@ -14,16 +14,17 @@ function deepEqual(x, y) {
     // If both params are identical, return true
     if (x === y) return true;
 
+    // Mismatched length
+    if (Object.keys(x).length !== Object.keys(y).length) return false;
+
     // If both params are objects
     if (typeof x == "object" && x != null) {
         if (typeof y == "object" && y != null) {
-            // Mismatched length
-            if (Object.keys(x).length !== Object.keys(y).length) return false;
 
             // Check keys
             for (var key in Object.keys(x)) {
                 // Check to see if the key is in y
-                if (!(key in Object.keys(y))) return false;
+                if (!(key in y)) return false;
 
                 // The key was found in both
                 // Recursively go through
