@@ -1,3 +1,10 @@
+/*
+    Fixed to not result in undefined behaviors
+    Taken from http://www.javascriptkit.com/javatutors/closures2.shtml
+    Example 5
+*/
+
+
 function buildList(list) {
     var result = [];
     for (var i = 0; i < list.length; i++) {
@@ -14,3 +21,5 @@ function testList() {
         fnlist[j]();
     }
 }
+
+console.log(testList());
