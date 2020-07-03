@@ -9,8 +9,10 @@ function buildList(list) {
     var result = [];
     var newLog = console.log.bind(console)
     for (var i = 0; i < list.length; i++) {
-        var item = 'item' + list[i];
-        result.push( function() {newLog(item + ' ' + list[i])} );
+        ( function(i) {
+            var item = 'item' + list[i];
+            result.push( function() {newLog(item + ' ' + list[i])} );
+        })(i);
     }
     return result;
 }
@@ -21,6 +23,7 @@ function testList() {
     for (var j = 0; j < fnlist.length; j++) {
         fnlist[j]();
     }
+
 }
 
 testList();
