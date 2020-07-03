@@ -22,4 +22,6 @@ function testList() {
     }
 }
 
-console.log(testList());
+var varList = testList();
+
+console.log(varList);
