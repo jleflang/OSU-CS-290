@@ -7,9 +7,10 @@
 
 function buildList(list) {
     var result = [];
+    var newLog = console.log.bind(console)
     for (var i = 0; i < list.length; i++) {
         var item = 'item' + list[i];
-        result.push( function() {alert(item + ' ' + list[i])} );
+        result.push( function() {newLog(item + ' ' + list[i])} );
     }
     return result;
 }
@@ -22,6 +23,4 @@ function testList() {
     }
 }
 
-var varList = testList();
-
-console.log(varList);
+testList();
