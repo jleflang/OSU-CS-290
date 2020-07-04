@@ -21,14 +21,16 @@ function Student(name, major, yearInSchool, club) {
   function sortArr(comparator, array) {
     // Local var
     let new_arr = array;
+    let len = new_arr.length;
+    var newLog = console.log.bind(console);
 
     // Sort using bubble sort
-    for (var i = 0; i < new_arr.length; i++) {
+    for (var i = 0; i < len; i++) {
       let is_swapped = false;
 
-      for (var j = 0; j < new_arr.length; i++) {
+      for (var j = 0; j < len; i++) {
         if (comparator(new_arr[j], new_arr[j + 1])) {
-          console.log(comparator.toString() +  ' swap');
+          newLog(comparator.toString() +  ' swap');
           let tmp = new_arr[j];
 
           new_arr[j] = new_arr[j + 1];
@@ -127,17 +129,20 @@ function Student(name, major, yearInSchool, club) {
   
   */
 
+  Student.prototype.logMe = function (omitClub) {
+
+    var newLog = console.log.bind(console);
+
+    if (omitClub) {
+      return newLog(Student.name + ' - ' + Student.major + ' - ' + Student.yearInSchool);
+    } else {
+      return newLog(Student.name + ' - ' + Student.major + ' - ' + Student.yearInSchool + ' - ' + Student.club);
+    }
+  }
+
   var studentsByYear = sortArr(yearComparator, students);
   var studentsByMajor = sortArr(majorComparator, students);
   var studentsByClub = sortArr(clubComparator, students);
-
-  Student.prototype.logMe = function (omitClub) {
-    if (omitClub) {
-      return console.log(Student.name + ' - ' + Student.major + ' - ' + Student.yearInSchool);
-    } else {
-      return console.log(Student.name + ' - ' + Student.major + ' - ' + Student.yearInSchool + ' - ' + Student.club);
-    }
-  }
 
   console.log('**********\nThe students sorted by year in school are:\n');
 
