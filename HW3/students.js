@@ -137,12 +137,12 @@ function Student(name, major, yearInSchool, club) {
 
   Student.prototype.logMe = function (immitClub) {
 
-    var newLog = console.log.bind(console);
+    //var newLog = console.log.bind(console);
 
     if (immitClub) {
-      return newLog(this.name + ' - ' + this.major + ' - ' + this.yearInSchool + ' - ' + this.club);
+      return console.log(this.name + ' - ' + this.major + ' - ' + this.yearInSchool + ' - ' + this.club);
     } else {
-      return newLog(this.name + ' - ' + this.major + ' - ' + this.yearInSchool);
+      return console.log(this.name + ' - ' + this.major + ' - ' + this.yearInSchool);
     }
   }
 
