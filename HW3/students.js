@@ -28,6 +28,7 @@ function Student(name, major, yearInSchool, club) {
 
       for (var j = 0; j < new_arr.length; i++) {
         if (comparator(new_arr[j], new_arr[j + 1])) {
+          console.log(comparator.toString() +  ' swap');
           let tmp = new_arr[j];
 
           new_arr[j] = new_arr[j + 1];
