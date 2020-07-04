@@ -59,6 +59,7 @@ function Student(name, major, yearInSchool, club) {
           }
         }
       }
+
       // If no swaps happened, we are done
       if (!is_swapped) {
         break;
@@ -173,10 +174,8 @@ function Student(name, major, yearInSchool, club) {
 
 function logMe(omitClub) {
     if (omitClub) {
-      return console.log(Student.getElementById('name') + ' - ' + Student.getElementById('major') + 
-      ' - ' + Student.getElementById('yearInSchool'));
+      return console.log(Student.name + ' - ' + Student.major + ' - ' + Student.yearInSchool);
     } else {
-      return console.log(Student.getElementById('name') + ' - ' + Student.getElementById('major') + 
-      ' - ' + Student.getElementById('yearInSchool') + ' - ' + Student.getElementById('club'));
+      return console.log(Student.name + ' - ' + Student.major + ' - ' + Student.yearInSchool + ' - ' + Student.club);
     }
   }
