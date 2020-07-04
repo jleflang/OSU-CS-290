@@ -152,19 +152,19 @@ function Student(name, major, yearInSchool, club) {
 
   console.log('**********\nThe students sorted by year in school are:\n');
 
-  for (let student in studentsByYear) {
+  for (var student in studentsByYear) {
     studentsByYear[student].logMe(false);
   }
 
   console.log('**********\nThe students sorted by major are:\n');
 
-  for (let student in studentsByMajor) {
+  for (var student in studentsByMajor) {
     studentsByMajor[student].logMe(false);
   }
 
   console.log('**********\nThe students sorted by club affiliation are:\n');
 
-  for (let student in studentsByClub) {
+  for (var student in studentsByClub) {
     studentsByClub[student].logMe(true);
   }
 
