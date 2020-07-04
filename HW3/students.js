@@ -130,28 +130,26 @@ function Student(name, major, yearInSchool, club) {
     }
   }
 
-  console.log("Sorting...");
   var studentsByYear = sortArr(yearComparator, students);
   var studentsByMajor = sortArr(majorComparator, students);
   var studentsByClub = sortArr(clubComparator, students);
-  console.log(" Finished!\n");
 
   console.log('**********\nThe students sorted by year in school are:\n');
 
-  for (let student of studentsByYear) {
-    student.logMe(false);
+  for (let student in studentsByYear) {
+    studentsByYear[student].logMe(false);
   }
 
   console.log('**********\nThe students sorted by major are:\n');
 
-  for (let student of studentsByMajor) {
-    student.logMe(false);
+  for (let student in studentsByMajor) {
+    studentsByMajor[student].logMe(false);
   }
 
   console.log('**********\nThe students sorted by club affiliation are:\n');
 
-  for (let student of studentsByClub) {
-    student.logMe(true);
+  for (let student in studentsByClub) {
+    studentsByClub[student].logMe(true);
   }
 
   console.log('**********\n');
