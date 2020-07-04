@@ -72,6 +72,7 @@ function Student(name, major, yearInSchool, club) {
     console.log(stu1Maj + '\t' + stu2Maj);
 
     if (stu1Maj > stu2Maj) {
+      console.log('swap');
       return true;
     } else {
       return false;
@@ -98,6 +99,7 @@ function Student(name, major, yearInSchool, club) {
     } else {var stu2Val = 5;}
 
     if (stu1Val > stu2Val) {
+      console.log('swap');
       return true;
     } else if (stu1Val == stu2Val) {
       return yearComparator(student1, student2);
