@@ -69,6 +69,8 @@ function Student(name, major, yearInSchool, club) {
     let stu1Maj = student1.major.toLowerCase();
     let stu2Maj = student2.major.toLowerCase();
 
+    console.log(stu1Maj + '\t' + stu2Maj);
+
     if (stu1Maj > stu2Maj) {
       return true;
     } else {
@@ -84,6 +86,8 @@ function Student(name, major, yearInSchool, club) {
     let order = {'improv': 1, 'cat' : 2, 'art' : 3, 'guitar' : 4};
     let stu1Club = student1.club.toLowerCase();
     let stu2Club = student2.club.toLowerCase();
+
+    console.log(stu1Club + '\t' + stu2Club);
 
     if (student1.club in order){
       var stu1Val = order[stu1Club];
@@ -136,8 +140,6 @@ function Student(name, major, yearInSchool, club) {
   */
 
   Student.prototype.logMe = function (immitClub) {
-
-    //var newLog = console.log.bind(console);
 
     if (immitClub) {
       return console.log(this.name + ' - ' + this.major + ' - ' + this.yearInSchool + ' - ' + this.club);
