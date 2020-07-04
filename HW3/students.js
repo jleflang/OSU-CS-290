@@ -25,7 +25,7 @@ function Student(name, major, yearInSchool, club) {
 
     // Sort using bubble sort
     for (var i = 0; i < len; i++) {
-      for (var j = 0; j < len; j++) {
+      for (var j = 0; j < (len - i - 1); j++) {
         if (comparator(new_arr[j], new_arr[j + 1])) {
 
           let tmp = new_arr[j];
