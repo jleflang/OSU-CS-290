@@ -162,14 +162,14 @@ function Student(name, major, yearInSchool, club) {
 
   console.log('**********\nThe students sorted by major are:\n');
 
-  for (var student in studentsByMajor) {
-    studentsByMajor[student].logMe(false);
+  for (var studen in studentsByMajor) {
+    studentsByMajor[studen].logMe(false);
   }
 
   console.log('**********\nThe students sorted by club affiliation are:\n');
 
-  for (var student in studentsByClub) {
-    studentsByClub[student].logMe(true);
+  for (var stude in studentsByClub) {
+    studentsByClub[stude].logMe(true);
   }
 
   console.log('**********\n');
