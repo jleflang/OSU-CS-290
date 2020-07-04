@@ -65,7 +65,11 @@ function Student(name, major, yearInSchool, club) {
   makes which are alphabetically earlier in the alphabet are "greater" than ones that 
   come later (from A-Z).*/
   function majorComparator(student1, student2) {
-    if (student1.major.toLowerCase() > student2.major.toLowerCase()) {
+
+    let stu1Maj = student1.major.toLowerCase();
+    let stu2Maj = student2.major.toLowerCase();
+
+    if (stu1Maj > stu2Maj) {
       return true;
     } else {
       return false;
@@ -78,13 +82,15 @@ function Student(name, major, yearInSchool, club) {
   has the higher year in school should be "greater."*/
   function clubComparator(student1, student2) {
     let order = {'improv': 1, 'cat' : 2, 'art' : 3, 'guitar' : 4};
+    let stu1Club = student1.club.toLowerCase();
+    let stu2Club = student2.club.toLowerCase();
 
     if (student1.club in order){
-      var stu1Val = order[student1.club.toLowerCase()];
+      var stu1Val = order[stu1Club];
     } else {var stu1Val = 5;}
 
     if (student2.club in order){
-      var stu2Val = order[student2.club.toLowerCase()];
+      var stu2Val = order[stu2Club];
     } else {var stu2Val = 5;}
 
     if (stu1Val > stu2Val) {
