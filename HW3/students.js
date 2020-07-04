@@ -80,12 +80,12 @@ function Student(name, major, yearInSchool, club) {
     let order = {'improv': 1, 'cat' : 2, 'art' : 3, 'guitar' : 4};
 
     if (student1.club in order){
-      let stu1Val = order[student1.club.toLowerCase()];
-    } else {let stu1Val = 5;}
+      var stu1Val = order[student1.club.toLowerCase()];
+    } else {var stu1Val = 5;}
 
-    if (student1.club in order){
-      let stu2Val = order[student2.club.toLowerCase()];
-    } else {let stu2Val = 5;}
+    if (student2.club in order){
+      var stu2Val = order[student2.club.toLowerCase()];
+    } else {var stu2Val = 5;}
 
     if (stu1Val > stu2Val) {
       return true;
