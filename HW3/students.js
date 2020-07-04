@@ -69,10 +69,7 @@ function Student(name, major, yearInSchool, club) {
     let stu1Maj = student1.major.toLowerCase();
     let stu2Maj = student2.major.toLowerCase();
 
-    console.log(stu1Maj + '\t' + stu2Maj);
-
     if (stu1Maj > stu2Maj) {
-      console.log('swap');
       return true;
     } else {
       return false;
@@ -88,8 +85,6 @@ function Student(name, major, yearInSchool, club) {
     let stu1Club = student1.club.toLowerCase();
     let stu2Club = student2.club.toLowerCase();
 
-    console.log(stu1Club + '\t' + stu2Club);
-
     if (stu1Club in order){
       var stu1Val = order[stu1Club];
     } else {var stu1Val = 5;}
@@ -99,7 +94,6 @@ function Student(name, major, yearInSchool, club) {
     } else {var stu2Val = 5;}
 
     if (stu1Val > stu2Val) {
-      console.log('swap');
       return true;
     } else if (stu1Val == stu2Val) {
       return yearComparator(student1, student2);
