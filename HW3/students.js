@@ -152,30 +152,30 @@ function Student(name, major, yearInSchool, club) {
   var studentsByMajor = sortArr('major', students);
   var studentsByClub = sortArr('club', students);
 
-  console.log('**********\nThe students sorted by year in school are:\n');
-
-  for (var i = 0; i < studentsByYear.length; i++) {
-    studentsByYear[i].prototype.logYear = logMe(false);
-  }
-
-  console.log('**********\nThe students sorted by major are:\n');
-
-  for (var i = 0; i < studentsByMajor.length; i++) {
-    studentsByMajor[i].prototype.logMajor = logMe(false);
-  }
-
-  console.log('**********\nThe students sorted by club affiliation are:\n');
-
-  for (var i = 0; i < studentsByClub.length; i++) {
-    studentsByClub[i].prototype.logClub = logMe(true);
-  }
-
-  console.log('**********\n');
-
-function logMe(omitClub) {
+  Student.prototype.logMe = function (omitClub) {
     if (omitClub) {
       return console.log(Student.name + ' - ' + Student.major + ' - ' + Student.yearInSchool);
     } else {
       return console.log(Student.name + ' - ' + Student.major + ' - ' + Student.yearInSchool + ' - ' + Student.club);
     }
   }
+
+  console.log('**********\nThe students sorted by year in school are:\n');
+
+  for (var i = 0; i < studentsByYear.length; i++) {
+    studentsByYear[i].logMe(false);
+  }
+
+  console.log('**********\nThe students sorted by major are:\n');
+
+  for (var i = 0; i < studentsByMajor.length; i++) {
+    studentsByMajor[i].logMe(false);
+  }
+
+  console.log('**********\nThe students sorted by club affiliation are:\n');
+
+  for (var i = 0; i < studentsByClub.length; i++) {
+    studentsByClub[i].logMe(true);
+  }
+
+  console.log('**********\n');
