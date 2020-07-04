@@ -139,9 +139,11 @@ function Student(name, major, yearInSchool, club) {
     }
   }
 
+  console.log("Sorting...")
   var studentsByYear = sortArr(yearComparator, students);
   var studentsByMajor = sortArr(majorComparator, students);
   var studentsByClub = sortArr(clubComparator, students);
+  console.log(" Finished!\n")
 
   console.log('**********\nThe students sorted by year in school are:\n');
 
