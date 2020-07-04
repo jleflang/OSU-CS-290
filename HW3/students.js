@@ -20,8 +20,8 @@ function Student(name, major, yearInSchool, club) {
   which is sorted with the largest object in index 0 and the smallest in the last index*/
   function sortArr(comparator, array) {
     // Local var
-    var new_arr = array;
-    var len = new_arr.length;
+    let new_arr = array;
+    let len = new_arr.length;
 
     // Sort using bubble sort
     for (var i = 0; i < len; i++) {
@@ -90,11 +90,11 @@ function Student(name, major, yearInSchool, club) {
 
     console.log(stu1Club + '\t' + stu2Club);
 
-    if (student1.club in order){
+    if (stu1Club in order){
       var stu1Val = order[stu1Club];
     } else {var stu1Val = 5;}
 
-    if (student2.club in order){
+    if (stu1Club in order){
       var stu2Val = order[stu2Club];
     } else {var stu2Val = 5;}
 
