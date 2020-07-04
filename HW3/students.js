@@ -25,8 +25,6 @@ function Student(name, major, yearInSchool, club) {
 
     // Sort using bubble sort
     for (var i = 0; i < len; i++) {
-      let is_swapped = false;
-
       for (var j = 0; j < len; i++) {
         if (comparator(new_arr[j], new_arr[j + 1])) {
 
@@ -35,14 +33,7 @@ function Student(name, major, yearInSchool, club) {
           new_arr[j] = new_arr[j + 1];
           new_arr[j + 1] = tmp;
 
-          is_swapped = true;
         }
-        
-      }
-
-      // If no swaps happened, we are done
-      if (!is_swapped) {
-        break;
       }
     }
 
