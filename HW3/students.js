@@ -27,37 +27,15 @@ function Student(name, major, yearInSchool, club) {
       var is_swapped = false;
 
       for (var j = 0; j < new_arr.length; i++) {
-        // Compare the years in school
-        if (comparator == 'year') {
-          if (yearComparator(new_arr[j], new_arr[j + 1])) {
-            var tmp = new_arr[j];
+        if (comparator(new_arr[j], new_arr[j + 1])) {
+          var tmp = new_arr[j];
 
-            new_arr[j] = new_arr[j + 1];
-            new_arr[j + 1] = tmp;
+          new_arr[j] = new_arr[j + 1];
+          new_arr[j + 1] = tmp;
 
-            is_swapped = true;
-          }
-        // Compare majors
-        } else if (comparator == 'major') {
-          if (majorComparator(new_arr[j], new_arr[j + 1])) {
-            var tmp = new_arr[j];
-
-            new_arr[j] = new_arr[j + 1];
-            new_arr[j + 1] = tmp;
-
-            is_swapped = true;
-          }
-        // Compare clubs
-        } else if (comparator == 'club') {
-          if (clubComparator(new_arr[j], new_arr[j + 1])) {
-            var tmp = new_arr[j];
-
-            new_arr[j] = new_arr[j + 1];
-            new_arr[j + 1] = tmp;
-
-            is_swapped = true;
-          }
+          is_swapped = true;
         }
+        
       }
 
       // If no swaps happened, we are done
@@ -148,9 +126,9 @@ function Student(name, major, yearInSchool, club) {
   
   */
 
-  var studentsByYear = sortArr('year', students);
-  var studentsByMajor = sortArr('major', students);
-  var studentsByClub = sortArr('club', students);
+  var studentsByYear = sortArr(yearComparator, students);
+  var studentsByMajor = sortArr(majorComparator, students);
+  var studentsByClub = sortArr(clubComparator, students);
 
   Student.prototype.logMe = function (omitClub) {
     if (omitClub) {
