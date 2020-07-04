@@ -124,9 +124,9 @@ function Student(name, major, yearInSchool, club) {
     var newLog = console.log.bind(console);
 
     if (omitClub) {
-      return newLog(Student.name + ' - ' + Student.major + ' - ' + Student.yearInSchool);
+      return newLog(this.name + ' - ' + this.major + ' - ' + this.yearInSchool);
     } else {
-      return newLog(Student.name + ' - ' + Student.major + ' - ' + Student.yearInSchool + ' - ' + Student.club);
+      return newLog(this.name + ' - ' + this.major + ' - ' + this.yearInSchool + ' - ' + this.club);
     }
   }
 
