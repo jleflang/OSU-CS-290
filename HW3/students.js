@@ -56,7 +56,7 @@ function Student(name, major, yearInSchool, club) {
   
   /* This compares two students based on their year in school. Sort in descending order.*/
   function yearComparator(student1, student2) {
-    if (student2.yearInSchool < student1.yearInSchool) {
+    if (student2.yearInSchool > student1.yearInSchool) {
       return true;
     } else {
       return false;
@@ -67,7 +67,7 @@ function Student(name, major, yearInSchool, club) {
   makes which are alphabetically earlier in the alphabet are "greater" than ones that 
   come later (from A-Z).*/
   function majorComparator(student1, student2) {
-    if (student2.major < student1.major) {
+    if (student2.major > student1.major) {
       return true;
     } else {
       return false;
@@ -79,7 +79,7 @@ function Student(name, major, yearInSchool, club) {
   It should be case insensitive. If two clubs are of equal type then the student who
   has the higher year in school should be "greater."*/
   function clubComparator(student1, student2) {
-    if (student2.club < student1.club) {
+    if (student2.club > student1.club) {
       return true;
     } else {
       return false;
@@ -124,9 +124,9 @@ function Student(name, major, yearInSchool, club) {
     var newLog = console.log.bind(console);
 
     if (omitClub) {
-      return newLog(this.name + ' - ' + this.major + ' - ' + this.yearInSchool);
-    } else {
       return newLog(this.name + ' - ' + this.major + ' - ' + this.yearInSchool + ' - ' + this.club);
+    } else {
+      return newLog(this.name + ' - ' + this.major + ' - ' + this.yearInSchool);
     }
   }
 
