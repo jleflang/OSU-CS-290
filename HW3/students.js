@@ -89,7 +89,7 @@ function Student(name, major, yearInSchool, club) {
       var stu1Val = order[stu1Club];
     } else {var stu1Val = 5;}
 
-    if (stu1Club in order){
+    if (stu2Club in order){
       var stu2Val = order[stu2Club];
     } else {var stu2Val = 5;}
 
