@@ -19,7 +19,53 @@ function Student(name, major, yearInSchool, club) {
   and an array of objects appropriate for that comparator and it will return a new array 
   which is sorted with the largest object in index 0 and the smallest in the last index*/
   function sortArr(comparator, array) {
-    // your code here
+    // Local var
+    var new_arr = array;
+
+    // Sort using bubble sort
+    for (var i = 0; i < new_arr.length; i++) {
+      var is_swapped = false;
+
+      for (var j = 0; j < new_arr.length; i++) {
+        // Compare the years in school
+        if (comparator == 'year') {
+          if (yearComparator(new_arr[j], new_arr[j + 1])) {
+            var tmp = new_arr[j];
+
+            new_arr[j] = new_arr[j + 1];
+            new_arr[j + 1] = tmp;
+
+            is_swapped = true;
+          }
+        // Compare majors
+        } else if (comparator == 'major') {
+          if (majorComparator(new_arr[j], new_arr[j + 1])) {
+            var tmp = new_arr[j];
+
+            new_arr[j] = new_arr[j + 1];
+            new_arr[j + 1] = tmp;
+
+            is_swapped = true;
+          }
+        // Compare clubs
+        } else if (comparator == 'club') {
+          if (clubComparator(new_arr[j], new_arr[j + 1])) {
+            var tmp = new_arr[j];
+
+            new_arr[j] = new_arr[j + 1];
+            new_arr[j + 1] = tmp;
+
+            is_swapped = true;
+          }
+        }
+      }
+      // If no swaps happened, we are done
+      if (!is_swapped) {
+        break;
+      }
+    }
+
+    return new_arr;
   }
   
   /* A comparator takes two arguments and uses some algorithm to compare them. If the first 
@@ -38,14 +84,22 @@ function Student(name, major, yearInSchool, club) {
   
   /* This compares two students based on their year in school. Sort in descending order.*/
   function yearComparator(student1, student2) {
-    // your code here
+    if (student2.getElementById('yearInSchool') < student1.getElementById('yearInSchool')) {
+      return true;
+    } else {
+      return false;
+    }
   }
   
   /* This compares two students based on their major. It should be case insensitive and 
   makes which are alphabetically earlier in the alphabet are "greater" than ones that 
   come later (from A-Z).*/
   function majorComparator(student1, student2) {
-    // your code here
+    if (student2.getElementById('major') < student1.getElementById('major')) {
+      return true;
+    } else {
+      return false;
+    }
   }
   
   /* This compares two students based on the club they're in. The ordering from "greatest" 
@@ -53,7 +107,11 @@ function Student(name, major, yearInSchool, club) {
   It should be case insensitive. If two clubs are of equal type then the student who
   has the higher year in school should be "greater."*/
   function clubComparator(student1, student2) {
-    // your code here
+    if (student2.getElementById('club') < student1.getElementById('club')) {
+      return true;
+    } else {
+      return false;
+    }
   }
   
   /* Your program should output the following to the console.log, including each of the opening and closing 
@@ -88,3 +146,37 @@ function Student(name, major, yearInSchool, club) {
   Jim - Sports Science - 2 - Guitar
   
   */
+
+  var studentsByYear = sortArr('year', students);
+  var studentsByMajor = sortArr('major', students);
+  var studentsByClub = sortArr('club', students);
+
+  console.log('**********\nThe students sorted by year in school are:\n');
+
+  for (var i = 0; i < studentsByYear.length; i++) {
+    studentsByYear[i].prototype.logYear = logMe(false);
+  }
+
+  console.log('**********\nThe students sorted by major are:\n');
+
+  for (var i = 0; i < studentsByMajor.length; i++) {
+    studentsByMajor[i].prototype.logMajor = logMe(false);
+  }
+
+  console.log('**********\nThe students sorted by club affiliation are:\n');
+
+  for (var i = 0; i < studentsByClub.length; i++) {
+    studentsByClub[i].prototype.log = logMe(true);
+  }
+
+  console.log('**********\n');
+
+function logMe(omitClub) {
+    if (omitClub) {
+      return console.log(Student.getElementById('name') + ' - ' + Student.getElementById('major') + 
+      ' - ' + Student.getElementById('yearInSchool'));
+    } else {
+      return console.log(Student.getElementById('name') + ' - ' + Student.getElementById('major') + 
+      ' - ' + Student.getElementById('yearInSchool') + ' - ' + Student.getElementById('club'));
+    }
+  }
