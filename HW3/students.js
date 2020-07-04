@@ -54,7 +54,7 @@ function Student(name, major, yearInSchool, club) {
   
   /* This compares two students based on their year in school. Sort in descending order.*/
   function yearComparator(student1, student2) {
-    console.log(student1.yearComparator + '\t' + student2.yearInSchool)
+    console.log(student1.yearInSchool + '\t' + student2.yearInSchool)
     if (student1.yearInSchool < student2.yearInSchool) {
       return true;
     } else {
