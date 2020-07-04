@@ -20,9 +20,8 @@ function Student(name, major, yearInSchool, club) {
   which is sorted with the largest object in index 0 and the smallest in the last index*/
   function sortArr(comparator, array) {
     // Local var
-    let new_arr = array;
-    let len = new_arr.length;
-    var newLog = console.log.bind(console);
+    var new_arr = array;
+    var len = new_arr.length;
 
     // Sort using bubble sort
     for (var i = 0; i < len; i++) {
@@ -30,7 +29,7 @@ function Student(name, major, yearInSchool, club) {
 
       for (var j = 0; j < len; i++) {
         if (comparator(new_arr[j], new_arr[j + 1])) {
-          newLog(comparator.toString() +  ' swap');
+
           let tmp = new_arr[j];
 
           new_arr[j] = new_arr[j + 1];
@@ -146,20 +145,20 @@ function Student(name, major, yearInSchool, club) {
 
   console.log('**********\nThe students sorted by year in school are:\n');
 
-  for (var i = 0; i < studentsByYear.length; i++) {
-    studentsByYear[i].logMe(false);
+  for (let student of studentsByYear) {
+    student.logMe(false);
   }
 
   console.log('**********\nThe students sorted by major are:\n');
 
-  for (var i = 0; i < studentsByMajor.length; i++) {
-    studentsByMajor[i].logMe(false);
+  for (let student of studentsByMajor) {
+    student.logMe(false);
   }
 
   console.log('**********\nThe students sorted by club affiliation are:\n');
 
-  for (var i = 0; i < studentsByClub.length; i++) {
-    studentsByClub[i].logMe(true);
+  for (let student of studentsByClub) {
+    student.logMe(true);
   }
 
   console.log('**********\n');
