@@ -20,15 +20,15 @@ function Student(name, major, yearInSchool, club) {
   which is sorted with the largest object in index 0 and the smallest in the last index*/
   function sortArr(comparator, array) {
     // Local var
-    var new_arr = array;
+    let new_arr = array;
 
     // Sort using bubble sort
     for (var i = 0; i < new_arr.length; i++) {
-      var is_swapped = false;
+      let is_swapped = false;
 
       for (var j = 0; j < new_arr.length; i++) {
         if (comparator(new_arr[j], new_arr[j + 1])) {
-          var tmp = new_arr[j];
+          let tmp = new_arr[j];
 
           new_arr[j] = new_arr[j + 1];
           new_arr[j + 1] = tmp;
