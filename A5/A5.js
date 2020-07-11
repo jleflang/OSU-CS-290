@@ -6,9 +6,12 @@ function bindButtons(){
     document.getElementById('submitCity').addEventListener('click', function(event){
         var req = new XMLHttpRequest();
         var payload = {cityGet:null};
+
         payload.cityGet = document.getElementById('cityGet').value;
+
         req.open('GET', 'https://api.openweathermap.org/data/2.5/weather?q=' + payload.cityGet + '&units=imperial&appid=' + apiKey, true);
         req.send(null);
+
         req.addEventListener('load',function(){
             if(req.status >= 200 && req.status < 400){
                 var response = JSON.parse(req.responseText);
@@ -21,18 +24,39 @@ function bindButtons(){
         });
         event.preventDefault();
     })
+
     document.getElementById('submitZip').addEventListener('click', function(event){
         var req = new XMLHttpRequest();
         var payload = {zipGet:null};
+
         payload.zipGet = document.getElementById('zipGet').value; 
         req.open('GET', 'https://api.openweathermap.org/data/2.5/weather?zip=' + payload.zipGet + '&units=imperial&appid=' + apiKey, true);
         req.send(null);
+
         req.addEventListener('load',function(){
             if(req.status >= 200 && req.status < 400){
                 var response = JSON.parse(req.responseText);
                 document.getElementById('locRequest').textContent = response.name + ', ' + response.sys.country;
                 document.getElementById('reply').textContent = response.weather[0].main + ', Temperature: ' + response.main.temp + '\xB0F, Wind: ' + 
                 response.wind.speed + ' miles/hour @ ' + response.wind.deg + '\xB0';
+            } else {
+                console.log("Error in network request: " + req.statusText);
+            }
+        });
+        event.preventDefault();
+    })
+    
+    document.getElementById('postHttpbin').addEventListener('click', function(event){
+        var req = new XMLHttpRequest();
+
+        req.open('POST', 'https://httpbin.org/post', true);
+        req.setRequestHeader('Content-Type', 'application/json');
+        req.send("The line between Light and Dark is so very thin.");
+
+        req.addEventListener('load',function(){
+            if(req.status >= 200 && req.status < 400){
+                var response = JSON.parse(req.responseText);
+                document.getElementById('HttpBinResponse').textContent = response.data;
             } else {
                 console.log("Error in network request: " + req.statusText);
             }

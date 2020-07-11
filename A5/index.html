@@ -11,27 +11,39 @@
             font-weight: bold;
         }
     </style>
-    <script src="A5.js"></script>
   </head>
   <body>
     <form>
       <fieldset>
         <legend>OpenWeather Lookup</legend>
-        <label for="cityGet">Input City, Country</label>
+        <label for="cityGet">Input City,Country</label>
         <input type="text" name="cityGet" id="cityGet">
         <input type="submit" id="submitCity">
         <br>
-        <label for="zipGet">Input ZIP Code, Country</label>
+        <label for="zipGet">Input ZIP Code,Country</label>
         <input type="text" name="zipGet" id="zipGet">
         <input type="submit" id="submitZip">
       </fieldset>
     </form>
     <div>
-      <h2>Result</h2>
+      <h3>Result</h3>
       <ul>
         <li><span class="bold">Location Request:&nbsp;</span><span id="locRequest"></span></li>
         <li><span class="bold">Reply:&nbsp;</span><span id="reply"></span></li>
       </ul>
     </div>
+    <form>
+        <fieldset>
+            <legend>POST to HTTPBin</legend>
+            <input type="button" id="postHttpbin" name="postHttpbin" value="Click Me">
+        </fieldset>
+    </form>
+    <div>
+        <h3>Result</h3>
+        <p>
+            <span id="HttpBinResponse"></span>
+        </p>
+    </div>
+    <script src="A5.js"></script>
   </body>
 </html>
