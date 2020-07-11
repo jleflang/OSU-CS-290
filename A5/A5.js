@@ -14,10 +14,11 @@ function bindButtons(){
         var loc = res[0];
         var country = res[1];
 
-        if (typeof loc == 'number') {
-            req.open('GET', 'https://api.openweathermap.org/data/2.5/weather?zip=' + loc + ',' + country + '&units=imperial&appid=' + apiKey, true);
-        } else {
+        // https://stackoverflow.com/questions/175739/built-in-way-in-javascript-to-check-if-a-string-is-a-valid-number
+        if (isNaN(loc)) {
             req.open('GET', 'https://api.openweathermap.org/data/2.5/weather?q=' + loc + ',' + country + '&units=imperial&appid=' + apiKey, true);
+        } else {
+            req.open('GET', 'https://api.openweathermap.org/data/2.5/weather?zip=' + loc + ',' + country + '&units=imperial&appid=' + apiKey, true);
         }
         req.send(null);
 
