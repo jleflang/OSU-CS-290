@@ -46,17 +46,20 @@ function bindButtons(){
         event.preventDefault();
     })
     
-    document.getElementById('postHttpbin').addEventListener('click', function(event){
+    document.getElementById('submitHttpBin').addEventListener('click', function(event){
         var req = new XMLHttpRequest();
+        var payload = null;
+
+        payload = document.getElementById('postHttpbin').value;
 
         req.open('POST', 'https://httpbin.org/post', true);
         req.setRequestHeader('Content-Type', 'application/json');
-        req.send("The line between Light and Dark is so very thin.");
+        req.send(payload);
 
         req.addEventListener('load',function(){
             if(req.status >= 200 && req.status < 400){
                 var response = JSON.parse(req.responseText);
-                document.getElementById('HttpBinResponse').textContent = response.data;
+                document.getElementById('httpBinResponse').textContent = response.data;
             } else {
                 console.log("Error in network request: " + req.statusText);
             }

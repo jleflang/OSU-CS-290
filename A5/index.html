@@ -35,13 +35,15 @@
     <form>
         <fieldset>
             <legend>POST to HTTPBin</legend>
-            <input type="button" id="postHttpbin" name="postHttpbin" value="Click Me">
+            <label for="postHttpbin">Input Text</label>
+            <input type="text" id="postHttpbin" name="postHttpbin">
+            <input type="submit" id="submitHttpBin">
         </fieldset>
     </form>
     <div>
         <h3>Result</h3>
         <p>
-            <span id="HttpBinResponse"></span>
+            <span id="httpBinResponse"></span>
         </p>
     </div>
     <script src="A5.js"></script>
