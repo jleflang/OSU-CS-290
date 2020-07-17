@@ -12,7 +12,6 @@ var cursorPos = {
 };
 
 // DOM Event: Content Loaded
-document.addEventListener("DOMContentLoaded", highlightCell(cursorPos.row, cursorPos.col));
 document.addEventListener("DOMContentLoaded", cursorSelect(cursorPos.row, cursorPos.col));
 document.addEventListener("DOMContentLoaded", bindButtons);
 
