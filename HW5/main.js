@@ -21,6 +21,8 @@ app.get('/',function(req, res){
     }
     var table = {};
     table.request = qtable;
+    console.info("<= GET:\n" + JSON.stringify(table, null, '\t'));
+
     res.render('get', table); 
 });
 
@@ -39,11 +41,15 @@ app.post('/', function(req, res){
     var table = {};
     table.request = qtable;
     table.reply = qtable2;
-
+    console.info("POST!");
+    console.info("<= GET:\n" + JSON.stringify(table.request, null, '\t'));
+    console.info("<= POST:\n" + JSON.stringify(table.reply, null, '\t'));
+ 
     res.render('post', table);
 });
 
 app.use(function(req, res){
+    console.warn("Bad path at " + req.path);
     res.status(404);
     res.render('404');
 });
