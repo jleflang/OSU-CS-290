@@ -1,0 +1,29 @@
+<h1>POST Request Received</h1>
+<table class="request" style="border: 2px solid gray;">
+    <thead>
+        <th>Query
+        <th>Value
+    </thead>
+    <tbody>
+        {{#each request}}
+        <tr>
+            <th> {{this.q}}
+            <td> {{this.value}}
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+<table class="reply" style="border: 2px solid gray;">
+    <thead>
+        <th>Query
+        <th>Value
+    </thead>
+    <tbody>
+        {{#each reply}}
+        <tr>
+            <th> {{this.r}}
+            <td> {{this.body}}
+        </tr>
+        {{/each}}
+    </tbody>
+</table>

@@ -1,0 +1,24 @@
+{
+  "name": "cs290-hw5-leflangj",
+  "version": "1.0.0",
+  "description": "Oregon State University CS 290 Homework 5: GET and POST",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "leflangj",
+  "repository": {
+    "type": "git",
+    "url": "github:jleflang/OSU-CS-290",
+    "directory": "HW5/"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.13.3",
+    "express": "^4.13.2",
+    "express-handlebars": "~2.0.1",
+    "express-session": "^1.11.3",
+    "forever": "^3.0.0",
+    "mysql": "^2.8.0"
+  }
+}

@@ -1,0 +1,16 @@
+<h1>GET Request Received</h1>
+
+<table class="request" style="border: 2px solid gray;">
+    <thead>
+        <th>Query
+        <th>Value
+    </thead>
+    <tbody>
+        {{#each request}}
+        <tr>
+            <th> {{this.q}}
+            <td> {{this.value}}
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
