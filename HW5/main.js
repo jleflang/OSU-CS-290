@@ -50,7 +50,6 @@ app.use(function(req, res){
 
 app.use(function(err, req, res, next){
     console.error(err.stack);
-    res.type('plain/text');
     res.status(500);
     res.render('500');
 });
