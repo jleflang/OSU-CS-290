@@ -1,0 +1,25 @@
+{
+  "name": "cs290-hw6-leflangj",
+  "version": "1.0.0",
+  "description": "Oregon State University CS 290 Homework 6: Database Interaction",
+  "main": "index.js",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "express-handlebars": "^4.0.1",
+    "express-session": "^1.17.1",
+    "forever": "^3.0.0",
+    "mysql": "^2.18.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jleflang/OSU-CS-290.git",
+    "directory": "HW6/"
+  },
+  "author": "leflangj",
+  "license": "MIT"
+}
