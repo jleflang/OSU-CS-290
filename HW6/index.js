@@ -15,49 +15,41 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.get('/', function(req, res, next) {
-
-  let context = {};
-
-  mysql.pool.query("SELECT * FROM workouts", function (err, rows, fields) {
-    if (err) {
-      next(err);
-      return;
-    }
-
-    let entry = [];
-
-    for (let data in rows) {
-      entry.push(data);
-    }
-
-    res.render('home', context);
-  });
+  if (req.query['type'] == 'request') {
+    mysql.pool.query("SELECT * FROM workouts WHERE id=?", [req.query['id']], function (err, entry, fields) {
+      if (err) {
+        next(err);
+        return;
+      }
+      
+      res.setHeader('Content-Type', 'application/json');
+      res.status(200);
+      res.send(JSON.stringify(entry[0]));
+    });
+  } else {
+    res.render('home');
+  } 
 })
 .post('/', function(req, res, next) {
-    
-  let context = {};
-
-  if (req.body['submit']) {
-    for (let q in req.query) {
-      context.push(req.query[q]);
-    }
-  
-    mysql.pool.query("INSERT INTO workouts (`id`,`name`,`reps`,`weight`,`date`,`lbs`) VALUES (NULL,?,?,?,?,?)", 
-    context, function(err, result) {
+  if (req.query['type'] == 'create') {
+      
+    mysql.pool.query("INSERT INTO workouts(`id`,`name`,`reps`,`weight`,`date`,`lbs`) VALUES (NULL,?,?,?,?,?)", 
+    [req.body.name, req.body.reps, req.body.weight, req.body.date, req.body.lbs], function(err, result) {
       if (err) {
         next(err);
         return;
       }
   
-      let entry = JSON.parse(result);
       console.log(result);
-      res.render('home', entry);
+      res.setHeader('Content-Type', 'text/plain');
+      res.status(200);
+      res.send(result.insertId.toString());
     });
   }
 
-  if (req.body['update']) {
+  if (req.query['type'] == 'update') {
  
-    mysql.pool.query("SELECT * FROM workouts WHERE id=?", [req.query.id], function(err, result) {
+    mysql.pool.query("SELECT * FROM workouts WHERE id=?", [req.query['id']], function(err, result) {
       if (err) {
         next(err);
         return;
@@ -65,33 +57,40 @@ app.get('/', function(req, res, next) {
       if (result.length == 1) {
         var curVals = result[0];
         mysql.pool.query("UPDATE workouts SET name=?, reps=?, weight=?, date=?, lbs=? WHERE id=?", 
-        [req.query.name || curVals.name, req.query.reps || curVals.reps, req.query.weight || curVals.weight, req.query.date || curVals.date, req.query.lbs || curVals.lbs, req.query.id],
+        [req.body.name || curVals.name, req.body.reps || curVals.reps, req.body.weight || curVals.weight, 
+          req.body.date || curVals.date, req.body.lbs || curVals.lbs, req.body.id],
         function(err, result) {
           if (err) {
             next(err);
             return;
           }
-          res.send(result);
+
+          console.log(result);
+          res.setHeader('Content-Type', 'text/plain');
+          res.status(200);
+          res.send(result.changedRows.toString());
         });
       }
     });
   }
   
-  if (req.body['delete']) {
-    mysql.pool.query("DELETE FROM workouts WHERE id=?", [req.query.id], function(err, result) {
+  if (req.query['type'] == 'delete') {
+    mysql.pool.query("DELETE FROM workouts WHERE id=?", [req.query['id']], function(err, result) {
       if (err) {
         next(err);
         return;
       }
 
-
+      console.log(result);
+      res.setHeader('Content-Type', 'text/plain');
+      res.status(200);
+      res.send(result.affectedRows.toString());
     });
   }
 
 });
 
 app.get('/reset-table', function(req, res, next){
-    var context = {};
     mysql.pool.query("DROP TABLE IF EXISTS workouts", function(err){
       var createString = "CREATE TABLE workouts("+
       "id INT PRIMARY KEY AUTO_INCREMENT,"+
@@ -102,7 +101,7 @@ app.get('/reset-table', function(req, res, next){
       "lbs BOOLEAN)";
       mysql.pool.query(createString, function(err){
         context.results = "Table reset";
-        res.render('home',context);
+        res.render('home');
       })
     });
   });
