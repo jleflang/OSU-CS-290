@@ -31,63 +31,71 @@ app.get('/', function(req, res, next) {
   } 
 })
 .post('/', function(req, res, next) {
-  if (req.query['type'] == 'create') {
-      
-    mysql.pool.query("INSERT INTO workouts(`id`,`name`,`reps`,`weight`,`date`,`lbs`) VALUES (NULL,?,?,?,?,?)", 
-    [req.body.name, req.body.reps, req.body.weight, req.body.date, req.body.lbs], function(err, result) {
-      if (err) {
-        next(err);
-        return;
-      }
-  
-      console.log(result);
+  mysql.pool.query("INSERT INTO workouts(`id`,`name`,`reps`,`weight`,`date`,`lbs`) VALUES (NULL,?,?,?,?,?)", 
+  [req.body.name, req.body.reps, req.body.weight, req.body.date, req.body.lbs], function(err, result) {
+    if (err) {
+      next(err);
+      return;
+    }
+
+    console.log(result);
+    res.setHeader('Content-Type', 'text/plain');
+    res.status(201);
+    res.send(result.insertId.toString());
+  });
+})
+.put('/', function (req, res, next) {
+  mysql.pool.query("SELECT * FROM workouts WHERE id=?", [req.query['id']], function(err, result) {
+    if (err) {
+      next(err);
+      return;
+    }
+    if (result.length == 1) {
+      var curVals = result[0];
+      mysql.pool.query("UPDATE workouts SET name=?, reps=?, weight=?, date=?, lbs=? WHERE id=?", 
+      [req.body.name || curVals.name, req.body.reps || curVals.reps, req.body.weight || curVals.weight, 
+        req.body.date || curVals.date, req.body.lbs || curVals.lbs, req.query['id']],
+      function(err, result) {
+        if (err) {
+          next(err);
+          return;
+        }
+
+        console.log(result);
+        res.setHeader('Content-Type', 'text/plain');
+        res.status(200);
+        res.send(result.changedRows.toString());
+      });
+    } else {
       res.setHeader('Content-Type', 'text/plain');
-      res.status(200);
-      res.send(result.insertId.toString());
-    });
-  }
+      res.status(404);
+      res.send("No entry found.");
+    }
+  });
+})
+.delete('/', function(req, res, next) {
+  mysql.pool.query("SELECT * FROM workouts WHERE id=?", [req.query['id']], function(err, result) {
+    if (err) {
+      next(err);
+      return;
+    }
+    if (result.length == 1) {
+      mysql.pool.query("DELETE FROM workouts WHERE id=?", [req.query['id']], function(err, result) {
+        if (err) {
+          next(err);
+          return;
+        }
 
-  if (req.query['type'] == 'update') {
- 
-    mysql.pool.query("SELECT * FROM workouts WHERE id=?", [req.query['id']], function(err, result) {
-      if (err) {
-        next(err);
-        return;
-      }
-      if (result.length == 1) {
-        var curVals = result[0];
-        mysql.pool.query("UPDATE workouts SET name=?, reps=?, weight=?, date=?, lbs=? WHERE id=?", 
-        [req.body.name || curVals.name, req.body.reps || curVals.reps, req.body.weight || curVals.weight, 
-          req.body.date || curVals.date, req.body.lbs || curVals.lbs, req.body.id],
-        function(err, result) {
-          if (err) {
-            next(err);
-            return;
-          }
-
-          console.log(result);
-          res.setHeader('Content-Type', 'text/plain');
-          res.status(200);
-          res.send(result.changedRows.toString());
-        });
-      }
-    });
-  }
-  
-  if (req.query['type'] == 'delete') {
-    mysql.pool.query("DELETE FROM workouts WHERE id=?", [req.query['id']], function(err, result) {
-      if (err) {
-        next(err);
-        return;
-      }
-
-      console.log(result);
+        console.log(result);
+        res.status(204);
+        res.send(null);
+      });
+    } else {
       res.setHeader('Content-Type', 'text/plain');
-      res.status(200);
-      res.send(result.affectedRows.toString());
-    });
-  }
-
+      res.status(404);
+      res.send("No entry found.");
+    }
+  });
 });
 
 app.get('/reset-table', function(req, res, next){
@@ -100,7 +108,7 @@ app.get('/reset-table', function(req, res, next){
       "date DATE,"+
       "lbs BOOLEAN)";
       mysql.pool.query(createString, function(err){
-        context.results = "Table reset";
+        console.warn("Table reset");
         res.render('home');
       })
     });

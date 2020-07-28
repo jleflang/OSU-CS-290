@@ -1,5 +1,6 @@
 // Listen
 document.addEventListener('DOMContentLoaded', submitBind);
+document.addEventListener('DOMContentLoaded', editBind);
 
 // Create the table
 document.addEventListener('DOMContentLoaded', createTable);
@@ -10,10 +11,7 @@ document.addEventListener('DOMContentLoaded', createTable);
 
 */
 function submitBind () {
-    // Const for form
-    const exerciseForm = document.getElementById('form');
-
-    exerciseForm.addEventListener('submit', function(event) {
+    document.getElementById('submit').addEventListener('click', function(event) {
         event.preventDefault();
 
         var req = new XMLHttpRequest();
@@ -22,11 +20,12 @@ function submitBind () {
         let reps = document.getElementById('reps').value;
         let weight = document.getElementById('weight').value;
         let date = document.getElementById('date').value;
-        let lbs = document.getElementById('lbs').value;
+        // https://stackoverflow.com/questions/3869535/how-to-get-the-selected-radio-button-value-using-js
+        let lbs = document.querySelector('input[name = "lbs"]:checked').value;
 
-        let content = {'name':name,'reps':reps,'weight':weight,'date':date,'lbs':lbs};
+        let content = {'name': name, 'reps': reps, 'weight': weight, 'date': date, 'lbs': lbs};
 
-        req.open('POST', '/?type=create', true);
+        req.open('POST', '/', true);
         req.setRequestHeader('Content-Type', 'application/json');
         req.setRequestHeader('Accept', 'text/plain');
         req.send(JSON.stringify(content));
@@ -50,6 +49,49 @@ function submitBind () {
 }
 
 /*
+    editBind function
+
+*/
+
+function editBind () {  
+    document.getElementById('edit').addEventListener('click', function (event) {
+        event.preventDefault();
+
+        var req = new XMLHttpRequest();
+
+        this.parentNode.parentNode.parentNode.parentNode.style.display = "none";
+
+        let id = document.getElementById('modid').value;
+        let name = document.getElementById('modname').value;
+        let reps = document.getElementById('modreps').value;
+        let weight = document.getElementById('modweight').value;
+        let date = document.getElementById('moddate').value;
+        let lbs = document.querySelector('input[name = "modlbs"]:checked').value;
+
+        let content = {'name': name, 'reps': reps, 'weight': weight, 'date': date, 'lbs': lbs};
+
+        req.open('PUT', '/?id=' + id, true);
+        req.setRequestHeader('Content-Type', 'application/json');
+        req.setRequestHeader('Accept', 'text/plain');
+        req.send(JSON.stringify(content));
+
+        req.addEventListener('load', function() {
+            if (req.status >= 200 && req.status < 400) {
+                updateRow(id, name, reps, weight, date, lbs)
+                .then(function (status) {
+                    console.log(status);
+                })
+                .catch(function (err) {
+                    console.error(err);
+                });
+            } else {
+                console.error(req.statusText);
+            }
+        });
+    });
+}
+
+/*
     createTable function
 
 */
@@ -59,7 +101,7 @@ function createTable () {
 
     var header = document.createElement('thead');
 
-    let heads = ['Name of Exercise', 'Number of Reps', 'Weight Used', 'Date', 'Unit'];
+    let heads = ['Name of Exercise', 'Number of Reps', 'Weight Used', 'Unit', 'Date'];
 
     heads.forEach(label => {
         let head = document.createElement('th');
@@ -116,7 +158,9 @@ function createRow (id) {
 
                 let dates = document.createElement('td');
                 dates.setAttribute('id', 'date');
-                dates.textContent = new Date(response.date).toLocaleDateString('en-US');
+                let rawDate = new Date(response.date);
+                dates.textContent = 
+                    (rawDate.getMonth() + 1) + '-' + rawDate.getDate() + '-' + rawDate.getFullYear();
 
                 let is_lbs = document.createElement('td');
                 is_lbs.setAttribute('id', 'lbs');
@@ -136,7 +180,7 @@ function createRow (id) {
                 update.setAttribute('id', 'update');
                 update.setAttribute('class', 'update');
                 update.setAttribute('value', 'Update');
-                update.setAttribute('onclick', "updateHandler(this)");
+                update.setAttribute('onclick', "editWindow('entry', this)");
                 form.appendChild(update);
 
                 let del = document.createElement('input');
@@ -152,8 +196,8 @@ function createRow (id) {
                 row.appendChild(exer);
                 row.appendChild(num_reps);
                 row.appendChild(weights);
-                row.appendChild(dates);
                 row.appendChild(is_lbs);
+                row.appendChild(dates);
                 row.appendChild(mod);
 
                 tbody.appendChild(row);
@@ -175,13 +219,24 @@ function createRow (id) {
 function updateRow (id, name, reps, weight, date, lbs) {
     return new Promise(function (resolve, reject) {
         try {
-            let row = document.getElementById(id).childNodes;
+            let table = document.getElementById('entry');
+            let rowCount = table.rows.length;
+            for (var i = 0; i < rowCount; i++) {
+                var row = table.rows[i];
 
-            row.getElementById('name').textContent = name;
-            row.getElementById('reps').textContent = reps;
-            row.getElementById('weight').textContent = weight;
-            row.getElementById('date').textContent = new Date(date).toLocaleDateString('en-US');
-            row.getElementById('lbs').textContent = convertLbs(lbs);
+                if (row.children[5].firstChild.firstChild.value == id) {
+                    
+                    row.cells[0].innerText = name;
+                    row.cells[1].innerText = reps;
+                    row.cells[2].innerText = weight;
+                    row.cells[3].innerText = convertLbs(lbs);
+                    let rawDate = new Date(date);
+                    row.cells[4].innerText = 
+                        (rawDate.getMonth() + 1) + '-' + (rawDate.getDate() + 1) + '-' + rawDate.getFullYear();
+                    
+                    break;
+                }
+            }
 
             resolve('Row ' + id + ' updated');
         }
@@ -199,7 +254,7 @@ function convertLbs (is_lbs) {
     if (is_lbs == 1) {
         return 'lbs';
     } else {
-        return 'Kgs';
+        return 'kgs';
     }
 }
 
@@ -218,6 +273,7 @@ function deleteRow (tableId, id) {
 
                 if (row == id.parentNode.parentNode.parentNode) {
                     table.deleteRow(i);
+                    break;
                 }
             }
 
@@ -230,41 +286,52 @@ function deleteRow (tableId, id) {
 }
 
 /*
-    updateHandler function
+    editWindow function
 
 */
-function updateHandler (id) {
-    var req = new XMLHttpRequest();
-
-    let name = document.getElementById('name').value;
-    let reps = document.getElementById('reps').value;
-    let weight = document.getElementById('weight').value;
-    let date = document.getElementById('date').value;
-    let lbs = document.getElementById('lbs').value;
-
-    let content = {'name':name,'reps':reps,'weight':weight,'date':date,'lbs':lbs};
-
-    req.open('POST', '/?type=update&id=' + id.toString(), true);
-    req.setRequestHeader('Content-Type', 'application/json');
-    req.setRequestHeader('Accept', 'text/plain');
-    req.send(JSON.stringify(content));
-
-    req.addEventListener('load', function() {
-        if (req.status >= 200 && req.status < 400) {
-            var response = JSON.parse(req.responseText);
-            updateRow(response.id, response.name, response.reps, response.weight, response.date, response.lbs)
-            .then(function (status) {
-                console.log(status);
-            })
-            .catch(function (err) {
-                console.error(err);
-            });
-        } else {
-            console.error(req.statusText);
-        }
-    });
+function editWindow (tableId, id) {
+    // https://www.w3schools.com/howto/howto_css_modals.asp
     event.stopPropagation();
-    event.preventDefault();
+
+    let rowId = document.getElementById('id').value;
+
+    let modal = document.getElementById("editModal");
+
+    let span = document.getElementsByClassName('cancel')[0];
+
+    span.onclick = function () {
+        modal.style.display = "none";
+    }
+
+    modal.style.display = "block";
+
+    document.getElementById('modid').value = rowId;
+
+    let table = document.getElementById(tableId);
+    let rowCount = table.rows.length;
+
+    for (var i = 0; i < rowCount; i++) {
+        var row = table.rows[i];
+
+        if (row == id.parentNode.parentNode.parentNode) {
+
+            document.getElementById('modname').value = row.children[0].innerText;
+            document.getElementById('modreps').value = row.children[1].innerText;
+            document.getElementById('modweight').value = row.children[2].innerText;
+
+            let rawDate = row.children[4].innerText.split('-');
+            
+            // https://stackoverflow.com/questions/6982692/how-to-set-input-type-dates-default-value-to-today
+            document.getElementById('moddate').value = 
+                new Date(rawDate[2] + '-' + rawDate[0] + '-' + rawDate[1]).toISOString().split('T')[0];
+    
+            if (row.children[3].innerText == 'lbs') {
+                document.getElementsByClassName('modunit')[0].checked = true;
+            } else {
+                document.getElementsByClassName('modunit')[1].checked = true;
+            }
+        }
+    }
 }
 
 /*
@@ -276,7 +343,7 @@ function deleteHandler (tableId, id) {
 
     let rowId = document.getElementById('id');
 
-    req.open('POST', '/?type=delete&id=' + rowId.value, true);
+    req.open('DELETE', '/?id=' + rowId.value, true);
     req.setRequestHeader('Accept', 'text/plain');
     req.send(null);
 

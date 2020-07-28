@@ -17,7 +17,7 @@
         <label class="unit">
             <p>Unit of measure?
                 <label>
-                    <input type="radio" name="lbs" id="lbs" value="1"/>Pounds
+                    <input type="radio" name="lbs" id="lbs" value="1" checked/>Pounds
                 </label>
                 <label>
                     <input type="radio" name="lbs" id="lbs" value="0"/>Kilograms
@@ -27,3 +27,39 @@
         <input type="submit" id="submit" name="submit" value="Add">
     </fieldset>
 </form>
+<!-- https://www.w3schools.com/howto/howto_css_modals.asp -->
+<div id="editModal" class="modal">
+    <div class="modal-content">
+        <span class="cancel">&times;</span>
+        <form id="mod">
+            <fieldset>
+                <legend>Edit Workout:</legend>
+                <input type="hidden" id="modid">
+                <label class="name">Name of Exercise:
+                    <input type="text" name="modname" id="modname" size="25" maxlength="100">
+                </label>
+                <label class="name">Number of Reps:
+                    <input type="number" name="modreps" id="modreps">
+                </label>
+                <br>
+                <label class="weight">Weight:
+                    <input type="number" name="modweight" id="modweight">
+                </label>
+                <label class="date">Date:
+                    <input type="date" name="moddate" id="moddate" value="">
+                </label>
+                <label class="modunit">
+                    <p>Unit of measure?
+                        <label>
+                            <input type="radio" name="modlbs" id="modlbs" value="1" checked/>Pounds
+                        </label>
+                        <label>
+                            <input type="radio" name="modlbs" id="modlbs" value="0"/>Kilograms
+                        </label>
+                    </p>
+                </label>
+                <input type="submit" id="edit" name="edit" value="Edit">
+            </fieldset>
+        </form>
+    </div>
+</div>
