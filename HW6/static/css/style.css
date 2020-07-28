@@ -2,11 +2,19 @@ html {
     font-family: Arial, Helvetica, sans-serif;
 }
 
+body {
+    display: flex;
+    flex-direction: row;
+}
+
 table {
+    flex-grow: 1;
     table-layout: auto;
-    width: auto;
+    width: 50%;
     border-collapse: collapse;
     border: 3px ridge gray;
+    padding: 10px;
+    margin: 5px;
 }
 
 tbody tr:nth-of-type(2n) {
@@ -14,28 +22,61 @@ tbody tr:nth-of-type(2n) {
 }
 
 tbody tr:nth-of-type(2n+1) {
-    background-color: antiquewhite;
+    background-color: whitesmoke;
 }
 
 th, td {
     border: 3px ridge gray;
     padding: 5px;
+    text-align: center;
+    width: 150px;
+}
+
+form {
+    width: 30%;
+    overflow: auto;
+    position: sticky;
 }
 
 form fieldset {
+    width: auto;
+    display: grid;
     padding: 5px;
     line-height: 18px;
 }
 
+form#editform {
+    width: auto;
+    margin: 3px;
+}
+
+form#mod {
+    width: auto;
+}
+
 input.update {
     background-color: lightskyblue;
+    margin-right: 2px;
+    font-weight: bolder;
 }
 
 input.delete {
     background-color: lightcoral;
+    margin-left: 2px;
+    font-weight: bolder;
 }
 
-/* Exact Copy of https://www.w3schools.com/howto/howto_css_modals.asp */
+input[type=text], input[type=number], input[type=date], .unit {
+    padding: 5px 0px;
+    margin: 2px 0px;
+}
+
+label {
+    padding: 5px 0px;
+
+}
+
+/* Modified Copy of https://www.w3schools.com/howto/howto_css_modals.asp */
 /* The Modal (background) */
 .modal {
     display: none; /* Hidden by default */
@@ -56,13 +97,14 @@ input.delete {
     margin: 15% auto; /* 15% from the top and centered */
     padding: 20px;
     border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
+    width: 40%; /* Could be more or less, depending on screen size */
   }
 
   /* The Close Button */
 .cancel {
+    padding: 0 3px;
     color: #aaa;
-    float: right;
+    float: inline-end;
     font-size: 28px;
     font-weight: bold;
   }

@@ -168,6 +168,7 @@ function createRow (id) {
 
                 let mod = document.createElement('td');
                 let form = document.createElement('form');
+                form.setAttribute('id', 'editform');
 
                 let ids = document.createElement('input');
                 ids.setAttribute('type', 'hidden');
@@ -341,9 +342,9 @@ function editWindow (tableId, id) {
 function deleteHandler (tableId, id) {
     var req = new XMLHttpRequest();
 
-    let rowId = document.getElementById('id');
+    let rowId = id.previousSibling.previousSibling.value;
 
-    req.open('DELETE', '/?id=' + rowId.value, true);
+    req.open('DELETE', '/?id=' + rowId, true);
     req.setRequestHeader('Accept', 'text/plain');
     req.send(null);
 

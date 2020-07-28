@@ -1,63 +1,47 @@
 <form id="form">
     <fieldset>
         <legend>Add to the Your Workout:</legend>
-        <label class="name">Name of Exercise:
-            <input type="text" name="name" id="name" size="25" maxlength="100">
-        </label>
-        <label class="name">Number of Reps:
-            <input type="number" name="reps" id="reps">
-        </label>
+        <label class="name">Name of Exercise:</label>
+        <input type="text" name="name" id="name" size="25" maxlength="100">
+        <label class="name">Number of Reps:</label>
+        <input type="number" name="reps" id="reps">
         <br>
-        <label class="weight">Weight:
-            <input type="number" name="weight" id="weight">
-        </label>
-        <label class="date">Date:
-            <input type="date" name="date" id="date">
-        </label>
-        <label class="unit">
+        <label class="weight">Weight:</label>
+        <input type="number" name="weight" id="weight">
+        <label class="date">Date:</label>
+        <input type="date" name="date" id="date">
+        <div class="unit">
             <p>Unit of measure?
-                <label>
-                    <input type="radio" name="lbs" id="lbs" value="1" checked/>Pounds
-                </label>
-                <label>
-                    <input type="radio" name="lbs" id="lbs" value="0"/>Kilograms
-                </label>
+                <input type="radio" name="lbs" id="lbs" value="1" checked/>Pounds
+                <input type="radio" name="lbs" id="lbs" value="0"/>Kilograms
             </p>
-        </label>
+        </div>
         <input type="submit" id="submit" name="submit" value="Add">
     </fieldset>
 </form>
 <!-- https://www.w3schools.com/howto/howto_css_modals.asp -->
 <div id="editModal" class="modal">
     <div class="modal-content">
-        <span class="cancel">&times;</span>
         <form id="mod">
+            <span class="cancel">&times;</span>
             <fieldset>
                 <legend>Edit Workout:</legend>
                 <input type="hidden" id="modid">
-                <label class="name">Name of Exercise:
-                    <input type="text" name="modname" id="modname" size="25" maxlength="100">
-                </label>
-                <label class="name">Number of Reps:
-                    <input type="number" name="modreps" id="modreps">
-                </label>
+                <label class="name">Name of Exercise:</label>
+                <input type="text" name="modname" id="modname" size="25" maxlength="100">
+                <label class="name">Number of Reps:</label>
+                <input type="number" name="modreps" id="modreps">
                 <br>
-                <label class="weight">Weight:
-                    <input type="number" name="modweight" id="modweight">
-                </label>
-                <label class="date">Date:
-                    <input type="date" name="moddate" id="moddate" value="">
-                </label>
-                <label class="modunit">
+                <label class="weight">Weight:</label>
+                <input type="number" name="modweight" id="modweight">
+                <label class="date">Date:</label>
+                <input type="date" name="moddate" id="moddate" value="">
+                <div class="modunit">
                     <p>Unit of measure?
-                        <label>
-                            <input type="radio" name="modlbs" id="modlbs" value="1" checked/>Pounds
-                        </label>
-                        <label>
-                            <input type="radio" name="modlbs" id="modlbs" value="0"/>Kilograms
-                        </label>
+                        <input type="radio" name="modlbs" id="modlbs" value="1" checked/>Pounds
+                        <input type="radio" name="modlbs" id="modlbs" value="0"/>Kilograms
                     </p>
-                </label>
+                </div>
                 <input type="submit" id="edit" name="edit" value="Edit">
             </fieldset>
         </form>
