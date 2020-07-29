@@ -21,10 +21,15 @@ app.get('/', function(req, res, next) {
         next(err);
         return;
       }
-      
-      res.setHeader('Content-Type', 'application/json');
-      res.status(200);
-      res.send(JSON.stringify(entry));
+
+      if (entry.length == 0) {
+        res.status(204);
+        res.send(null);
+      } else {
+        res.setHeader('Content-Type', 'application/json');
+        res.status(200);
+        res.send(JSON.stringify(entry));
+      }
     });
   }
   else if (req.query['type'] == 'request') {
