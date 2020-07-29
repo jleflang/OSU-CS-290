@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', editBind);
 
 // Create the table
 document.addEventListener('DOMContentLoaded', createTable);
+document.addEventListener('DOMContentLoaded', initialRows);
 
 
 /*
@@ -117,6 +118,36 @@ function createTable () {
     table.appendChild(body);
 
     document.body.appendChild(table);
+}
+
+/*
+    initialRows function
+
+*/
+function initialRows () {
+    var req = new XMLHttpRequest();
+
+    req.open('GET', '/?type=request&id=all', true);
+    req.setRequestHeader('Accept', 'application/json');
+    req.send(null);
+
+    req.addEventListener('load', function() {
+        if (req.status >= 200 && req.status < 400) {
+            let resp = JSON.parse(req.responseText);
+
+            for (var i = 0; i < resp.length; i++) {
+                createRow(resp[i].id)
+                .then(function(load) {
+                    console.log(load);
+                })
+                .catch(function(err) {
+                    console.error(err);
+                });
+            }
+        } else {
+            console.log('BAD END');
+        }
+    });
 }
 
 /*
@@ -252,11 +283,7 @@ function updateRow (id, name, reps, weight, date, lbs) {
 
 */
 function convertLbs (is_lbs) {
-    if (is_lbs == 1) {
-        return 'lbs';
-    } else {
-        return 'kgs';
-    }
+    return is_lbs == 1 ? 'lbs' : 'kgs';
 }
 
 /*

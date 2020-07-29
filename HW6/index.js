@@ -15,7 +15,19 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.get('/', function(req, res, next) {
-  if (req.query['type'] == 'request') {
+  if (req.query['type'] == 'request' && req.query['id'] == 'all') {
+    mysql.pool.query("SELECT `id` FROM workouts", null, function (err, entry, fields) {
+      if (err) {
+        next(err);
+        return;
+      }
+      
+      res.setHeader('Content-Type', 'application/json');
+      res.status(200);
+      res.send(JSON.stringify(entry));
+    });
+  }
+  else if (req.query['type'] == 'request') {
     mysql.pool.query("SELECT * FROM workouts WHERE id=?", [req.query['id']], function (err, entry, fields) {
       if (err) {
         next(err);
