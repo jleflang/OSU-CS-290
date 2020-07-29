@@ -133,7 +133,7 @@ function initialRows () {
 
     req.addEventListener('load', function() {
         if (req.status >= 200 && req.status < 400) {
-            let resp = JSON.parse(req.responseText);
+            let resp = req.status != 204 ? JSON.parse(req.responseText) : [];
 
             for (var i = 0; i < resp.length; i++) {
                 createRow(resp[i].id)
