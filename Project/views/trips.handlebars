@@ -1,0 +1,37 @@
+<main class="container-fluid" role="main">
+    <ul class="nav navbar-expand-lg nav-tabs nav-justified mt-5 pt-2" id="destinationTab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <a class="nav-link active" id="mercury-tab" data-toggle="tab" href="#mercury" role="tab" aria-controls="mercury" aria-selected="true">Mercury</a>
+        </li>
+        <li class="nav-item" role="presentation">
+            <a class="nav-link" id="venus-tab" data-toggle="tab" href="#venus" role="tab" aria-controls="venus" aria-selected="false">Venus</a>
+        </li>
+        <li class="nav-item" role="presentation">
+            <a class="nav-link" id="luna-tab" data-toggle="tab"  href="#luna" role="tab" aria-controls="luna" aria-selected="false">Luna</a>
+        </li>
+        <li class="nav-item" role="presentation">
+            <a class="nav-link" id="mars-tab" data-toggle="tab" href="#mars" role="tab" aria-controls="mars" aria-selected="false">Mars</a>
+        </li>
+        <li class="nav-item" role="presentation">
+            <a class="nav-link" id="jupiter-tab" data-toggle="tab" href="#jupiter" role="tab" aria-controls="jupiter" aria-selected="false">Jupiter</a>
+        </li>
+    </ul>
+    <div class="tab-content" id="tripContent">
+        <div class="tab-pane fade show active" id="mercury" role="tabpanel" aria-labelledby="mercury-tab">
+            {{> mercury}}
+        </div>
+        <div class="tab-pane fade" id="venus" role="tabpanel" aria-labelledby="venus-tab">
+            {{> venus}}
+        </div>
+        <div class="tab-pane fade" id="luna" role="tabpanel" aria-labelledby="luna-tab">
+            {{> luna}}
+        </div>
+        <div class="tab-pane fade" id="mars" role="tabpanel" aria-labelledby="mars-tab">
+            {{> mars}}
+        </div>
+        <div class="tab-pane fade" id="jupiter" role="tabpanel" aria-labelledby="jupiter-tab">
+            {{> jupiter}}
+        </div>
+    </div>
+    <a id="back-to-top" href="#" class="btn btn-dark btn-large back-to-top" role="button">Top</a>
+</main>

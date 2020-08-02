@@ -17,22 +17,27 @@ app.use(bodyParser.json());
 
 app.get('/', function(req, res, next) {
     res.status(200);
-    res.render('home');
-});
-
-app.get('/trips', function(req, res, next) {
+    res.render('home', {page_name: 'home', helpers:{
+        ismatch: function(value, page) {return value == page ? true : false;}
+    }});
+})
+.get('/trips', function(req, res, next) {
     res.status(200);
-    res.render('trips');
-});
-
-app.get('/book', function(req, res, next) {
+    res.render('trips', {page_name: 'trips', helpers:{
+        ismatch: function(value, page) {return value == page ? true : false;}
+    }});
+})
+.get('/book', function(req, res, next) {
     res.status(200);
-    res.render('book');
-});
-
-app.get('/about', function(req, res, next) {
+    res.render('book', {page_name: 'book', helpers:{
+        ismatch: function(value, page) {return value == page ? true : false;}
+    }});
+})
+.get('/about', function(req, res, next) {
     res.status(200);
-    res.render('about');
+    res.render('about', {page_name: 'about', helpers:{
+        ismatch: function(value, page) {return value == page ? true : false;}
+    }});
 });
 
 app.use(function(req, res){

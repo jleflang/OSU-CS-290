@@ -1,27 +1,30 @@
-<nav class="navbar navbar-expand-lg navbar-fixed-top navbar-dark text-white bg-dark">
-    <div class="navbar-collapse collapse w-100 dual-collapse order-1 order-md-0">
+<header role="navigation">
+    <nav class="navbar navbar-expand-lg fixed-top navbar-dark text-white">
+        
+        <div class="navbar-collapse collapse w-100 dual-collapse order-1 order-md-0">
         <ul class="navbar-nav ml-auto">
             <li class="nav-item mr-5">
-                <a class="nav-link h5 active" href="/">Home</a>
+                <a class="nav-link h5 {{#if (ismatch page_name "home")}}active{{/if}}" href="/">Home</a>
             </li>
             <li class="nav-item mr-5">
-                <a class="nav-link h5" href="/trips">Trips</a>
+                <a class="nav-link h5 {{#if (ismatch page_name "trips")}}active{{/if}}" href="/trips">Trips</a>
             </li>
         </ul>
-    </div>
-    <div class="mx-auto order-0">
-        <a class="navbar-brand mx-auto" style="width: 48px; height: 48px;">
-            <img src="icons/android-chrome-192x192.png" class="img-fluid" alt="Rocket">
-        </a>
-    </div>
-    <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item ml-5">
-                <a class="nav-link h5" href="/book">Book</a>
-            </li>
-            <li class="nav-item ml-5">
-                <a class="nav-link h5" href="/about">About</a>
-            </li>
-        </ul>
-    </div>
-</nav>
+        </div>
+        <div class="mx-auto order-0">
+            <a class="navbar-brand mx-auto" style="width: 48px; height: 48px;">
+                <img src="icons/android-chrome-192x192.png" class="img-fluid" alt="Rocket">
+            </a>
+        </div>
+        <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+            <ul class="nav navbar-nav mr-auto">
+                <li class="nav-item ml-5">
+                    <a class="nav-link h5 {{#if (ismatch page_name "book")}}active{{/if}}" href="/book">Book</a>
+                </li>
+                <li class="nav-item ml-5">
+                    <a class="nav-link h5 {{#if (ismatch page_name "about")}}active{{/if}}" href="/about">About</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>

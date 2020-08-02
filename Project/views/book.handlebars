@@ -1,0 +1,146 @@
+<main class="container-fluid" role="main">
+    <div class="container p-3">
+        <h3 class="text-center">Book your trip:</h3>  
+        <form class="border" id="booking">
+            <ul class="nav nav-pills nav-fill" id="formTabs" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="contact-tab" data-toggle="tab" href="#page1" role="tab" aria-controls="page1" aria-selected="true">Contact Information</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="trip-tab" data-toggle="tab" href="#page2" role="tab" aria-controls="page2" aria-selected="false">Trip Selection</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="confirm-tab" data-toggle="tab" href="#page3" role="tab" aria-controls="page3" aria-selected="false">Confirmation</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" id="download-tab" data-toggle="tab" href="#page4" role="tab" aria-controls="page4" role="tab" aria-selected="false">Download Ticket</a>
+                </li>
+            </ul>
+            <div class="tab-content" id="formTabs">
+                <div class="tab-pane fade show active container pt-2" id="page1" role="tabpanel" aria-labelledby="contact-tab">
+                    <div class="form-row">
+                        <div class="col">
+                            <label for="nameFirst">First Name</label>
+                            <input type="text" class="form-control" id="nameFirst" placeholder="First Name" aria-describedby="nameFirst">
+                            <small id="nameFirstHelp" class="form-text text-muted">Enter your First Name.</small>
+                        </div>
+                        <div class="col">
+                            <label for="nameLast">Surname</label>
+                            <input type="text" class="form-control" id="nameLast" placeholder="Surname" aria-describedby="nameLast">
+                            <small id="nameLastHelp" class="form-text text-muted">Enter your Surname.</small>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputAddress">Address</label>
+                        <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+                        <small id="nameAddrHelp" class="form-text text-muted">Enter your Address.</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputAddress2">Address 2</label>
+                        <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-5">
+                            <label for="inputCity">City</label>
+                            <input type="text" class="form-control" id="inputCity">
+                        </div>
+                        <div class="form-group col-md-2 offset-md-1">
+                            <label for="inputState">State</label>
+                            <select id="inputState" class="form-control">
+                                <option value="AL" selected>AL</option>
+                                <option value="AK">AK</option>
+                                <option value="AR">AR</option>	
+                                <option value="AZ">AZ</option>
+                                <option value="CA">CA</option>
+                                <option value="CO">CO</option>
+                                <option value="CT">CT</option>
+                                <option value="DC">DC</option>
+                                <option value="DE">DE</option>
+                                <option value="FL">FL</option>
+                                <option value="GA">GA</option>
+                                <option value="HI">HI</option>
+                                <option value="IA">IA</option>	
+                                <option value="ID">ID</option>
+                                <option value="IL">IL</option>
+                                <option value="IN">IN</option>
+                                <option value="KS">KS</option>
+                                <option value="KY">KY</option>
+                                <option value="LA">LA</option>
+                                <option value="MA">MA</option>
+                                <option value="MD">MD</option>
+                                <option value="ME">ME</option>
+                                <option value="MI">MI</option>
+                                <option value="MN">MN</option>
+                                <option value="MO">MO</option>	
+                                <option value="MS">MS</option>
+                                <option value="MT">MT</option>
+                                <option value="NC">NC</option>	
+                                <option value="NE">NE</option>
+                                <option value="NH">NH</option>
+                                <option value="NJ">NJ</option>
+                                <option value="NM">NM</option>			
+                                <option value="NV">NV</option>
+                                <option value="NY">NY</option>
+                                <option value="ND">ND</option>
+                                <option value="OH">OH</option>
+                                <option value="OK">OK</option>
+                                <option value="OR">OR</option>
+                                <option value="PA">PA</option>
+                                <option value="RI">RI</option>
+                                <option value="SC">SC</option>
+                                <option value="SD">SD</option>
+                                <option value="TN">TN</option>
+                                <option value="TX">TX</option>
+                                <option value="UT">UT</option>
+                                <option value="VT">VT</option>
+                                <option value="VA">VA</option>
+                                <option value="WA">WA</option>
+                                <option value="WI">WI</option>	
+                                <option value="WV">WV</option>
+                                <option value="WY">WY</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-2 offset-md-1">
+                            <label for="inputZip">Zip</label>
+                            <input type="text" class="form-control" id="inputZip">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" id="email" placeholder="some@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" class="form-control" id="phone" placeholder="888-888-8888">
+                    </div>
+                    <div class="text-right mb-2">
+                        <button type="button" class="btnNext btn btn-success">Next</button>
+                    </div>
+                    
+                </div>
+                <div class="tab-pane fade container pt-2" id="page2" role="tabpanel" aria-labelledby="trip-tab">
+                    
+                    <div class="text-right mb-2">
+                        <button type="button" class="btnPrevious btn btn-success">Prev</button>
+                        <button type="button" class="btnNext btn btn-success">Next</button>
+                    </div> 
+     
+                </div>
+                <div class="tab-pane fade container pt-2" id="page3" role="tabpanel" aria-labelledby="confirm-tab">
+                    <p>This is not a real booking, but please confirm your Information:</p>
+                    <div class="form-group">
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="confirm">
+                            <label for="confirm" class="form-check-label">Confirm Your Booking</label>
+                        </div>
+                    </div>
+                    <div class="text-right mb-2">
+                        <button type="button" class="btnPrevious btn btn-success">Prev</button>
+                        <button type="button" class="btnNext btn btn-success">Next</button>
+                    </div>
+                   
+                </div>
+            </div>
+        </form>
+    </div>
+</main>
