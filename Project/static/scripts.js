@@ -62,6 +62,19 @@ $(document).ready(function() {
         }
     });
 
+    $('#confirm').click(function(event) {
+        if ($(this).is(':checked')) {
+            $('.btnSubmit').removeClass('btn-warning');
+            $('.btnSubmit').addClass('btn-success');
+            $('.btnSubmit').removeAttr('disabled');
+        } else {
+            $('.btnSubmit').removeClass('btn-success');
+            $('.btnSubmit').addClass('btn-warning');
+            $('.btnSubmit').attr('disabled', true);
+        }
+        
+    });
+
     $('#booking').submit(function(event) {
         event.preventDefault();
         $('#contact-tab').addClass('disabled');

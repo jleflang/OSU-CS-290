@@ -58,9 +58,9 @@ app.post('/api', function(req, res, next) {
             .then((file) => {
                 res.status(200);
                 res.setHeader('Content-Type', 'application/pdf; charset=utf-8');
-                res.setHeader('Content-Desposition', 'attachment;filename=ticket.pdf');
+                res.setHeader('Content-Desposition', 'attachment; filename=ticket.pdf');
                 res.setHeader('Content-Length', file.length);
-                res.setHeader('Content-Security-Policy', "default-src 'self'");
+                res.setHeader('Content-Security-Policy', "default-src 'self';");
                 res.end(file);
             })
             .catch((err) => {
