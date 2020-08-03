@@ -13,7 +13,7 @@
                     <a class="nav-link" id="confirm-tab" data-toggle="tab" href="#page3" role="tab" aria-controls="page3" aria-selected="false">Confirmation</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link disabled" id="download-tab" data-toggle="tab" href="#page4" role="tab" aria-controls="page4" role="tab" aria-selected="false">Download Ticket</a>
+                    <a class="nav-link disabled" id="download-tab" data-toggle="tab" href="#page4" role="tab" aria-controls="page4" aria-selected="false">Download Ticket</a>
                 </li>
             </ul>
             <div class="tab-content" id="formTabs">
@@ -119,7 +119,23 @@
                     
                 </div>
                 <div class="tab-pane fade container pt-2" id="page2" role="tabpanel" aria-labelledby="trip-tab">
-                    
+                    <div class="form-group">
+                        <label for="destin">Destination:</label>
+                        <select id="destin" class="form-control">
+                            <option value="" disabled selected>Select Destination</option>
+                            <option value="luna">Luna</option>
+                            <option value="mercury">Mercury</option>
+                            <option value="venus">Venus</option>
+                            <option value="mars">Mars</option>
+                            <option value="jupiter">Jupiter</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="depart">Departure Date:</label>
+                        <select id="depart" class="form-control">
+                            <option value="" disabled>Select Destination First</option>
+                        </select>
+                    </div>
                     <div class="text-right mb-2">
                         <button type="button" class="btnPrevious btn btn-success">Prev</button>
                         <button type="button" class="btnNext btn btn-success">Next</button>
@@ -136,9 +152,13 @@
                     </div>
                     <div class="text-right mb-2">
                         <button type="button" class="btnPrevious btn btn-success">Prev</button>
-                        <button type="button" class="btnNext btn btn-success">Next</button>
+                        <button type="submit" class="btnSubmit btn btn-success">Submit</button>
                     </div>
                    
+                </div>
+                <div class="tab-pane fade container pt-2" id="page4" role="tabpanel" aria="download-tab">
+                    <h2>Your Ticket will be downloaded shortly</h2>
+                    {{!-- <h3>If the download does not start <a id="download-link">Click Here.</a></h3>  --}}
                 </div>
             </div>
         </form>
